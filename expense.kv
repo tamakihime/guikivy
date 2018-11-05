@@ -1,0 +1,56 @@
+<TextInput>:
+    multiline: False
+    write_tab: False
+    font_size:20
+<Label>:
+    font_size: 20
+    color: 0.1, 0.1, 0.1, 1
+<PaddingBoxLayout@BoxLayout>:
+    padding: 20
+<LoginScreen>:
+    BoxLayout:
+        orientation:"vertical"
+        canvas.before:
+            Color:
+                rgba:0.9,0.9,0.9,1
+            Rectangle:
+                pos: self.pos
+                size:self.size
+        Label:
+            text: "ログイン画面"
+            size_hint_y:1.5
+            font_size: 32
+        BoxLayout:
+            orientation:"vertical"
+            size_hint_y:8.5
+            PaddingBoxLayout:
+                Label:
+                    text:"ユーザID"
+                TextInput:
+                    id:text_userID
+            PaddingBoxLayout:
+                Label:
+                    text:"パスワード"
+                TextInput:
+                    password: True
+                    id:text_password
+
+
+            Label:
+                id: error_message
+                text: ""
+                color: 1, 0, 0, 1
+            Label:
+
+            PaddingBoxLayout:
+                Label:
+                Button:
+                    text:"ログイン"
+                    color:1,1,1,1
+                    on_press: root.loginButtonClicked()
+
+<InputScreen>:
+    Button:
+        text: "戻る"
+        color: 1, 1, 1, 1
+        on_press: root.ReturnButtonClicked()

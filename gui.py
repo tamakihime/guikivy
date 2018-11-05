@@ -1,32 +1,37 @@
-from kivy.uix.label import Label
+from kivy.config import Config
+Config.set("graphics", "resizable", False)
+Config.set("graphics", "width", 640)
+Config.set("graphics", "height", 480)
 from kivy.app import App
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.textinput import TextInput
+from kivy.core.text import LabelBase, DEFAULT_FONT
+from kivy.uix.screenmanager import ScreenManager, Screen
+
+LabelBase.register(DEFAULT_FONT, "ipaexg.ttf")
+sm = ScreenManager()
+
+USER_ID = "test" #追加
+PASSWORD = "test" #追加
+ERROR_MESSAGE = "ログインエラー"
+class LoginScreen(Screen):
+    def loginButtonClicked(self):
+        userID = self.ids["text_userID"].text  # この行を追加
+        password = self.ids["text_password"].text
+        if USER_ID == userID and password == PASSWORD:  # このブロックを追加
+            sm.current = "input"
+        else:
+            self.ids["error_message"].text = ERROR_MESSAGE
+        pass
+class InputScreen(Screen):
+    def ReturnButtonClicked(self):
+        sm.current = "login"
 
 
-class LoginScreen(GridLayout):
-    def __init__(self, **kwargs):
-        super(LoginScreen, self).__init__(**kwargs)
-        self.cols = 2
-        self.add_widget(Label(text="Username:"))
-        self.username = TextInput(multiline=False)
-        self.add_widget(self.username)
-
-
-        self.add_widget(Label(text="Password:"))
-        self.password= TextInput(multiline=False)
-        self.add_widget(self.password)
-
-
-
-class IntoroKivy(App):
-
-    # 画面にHello World!と表示
+class ExpenseApp(App):
     def build(self):
-        return LoginScreen()
+        sm.add_widget(LoginScreen(name="login"))
+        sm.add_widget(InputScreen(name="input"))
+        return sm
 
 
-# Main
-if __name__ == "__main__":
-    # アプリの起動
-    IntoroKivy().run()
+if __name__ == '__main__':
+    ExpenseApp().run()
