@@ -1,0 +1,48 @@
+BoxLayout:
+    canvas.before:
+        Color:
+            rgba:0.9, 0.9 ,0.9 ,1
+        Rectangle:
+            pos :self.pos
+            size:self.size
+    BoxLayout:
+        orientation:"vertical"
+        Label:
+            size_hint_y:0.1
+            canvas.before:
+                Color:
+                    rgba:0,0,0,1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            text:"Please select start"
+            color:1,1,1,1
+
+        BoxLayout:
+            Label:
+                size_hint_x:0.1
+                canvas.before:
+                    Color:
+                        rgba:0,0,0,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x:3.0
+            Label:
+                size_hint_x:0.1
+                canvas.before:
+                    Color:
+                        rgba:0,0,0,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+        Label:
+            size_hint_y:0.05
+            canvas.before:
+                Color:
+                    rgba:0,0,0,1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
